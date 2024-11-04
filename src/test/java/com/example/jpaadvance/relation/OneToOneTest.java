@@ -2,7 +2,7 @@ package com.example.jpaadvance.relation;
 
 import com.example.jpaadvance.entity.Food;
 import com.example.jpaadvance.entity.User;
-import com.example.jpaadvance.repository.FoodReposiroty;
+import com.example.jpaadvance.repository.FoodRepository;
 import com.example.jpaadvance.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class OneToOneTest {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    FoodReposiroty foodRepository;
+    FoodRepository foodRepository;
 
     @Test
     @Rollback(value = false) // 테스트에서는 @Transactional 에 의해 자동 rollback 됨으로 false 설정해준다.
@@ -48,7 +48,7 @@ public class OneToOneTest {
         // 외래 키의 주인이 아닌 User 에서 Food 를 저장해보겠습니다.
         User user = new User();
         user.setName("Robbie");
-        user.setFood(food);
+       // user.setFood(food);
 
         userRepository.save(user);
         foodRepository.save(food);
@@ -68,7 +68,7 @@ public class OneToOneTest {
         // 외래 키(연관 관계) 설정 : User에 food.setUser(this); 추가
         User user = new User();
         user.setName("Robbie");
-        user.addFood(food);
+        //user.addFood(food);
 
         userRepository.save(user);
         foodRepository.save(food);
@@ -109,9 +109,9 @@ public class OneToOneTest {
         System.out.println("user.getName() = " + user.getName());
 
         // 해당 고객이 주문한 음식 정보 조회
-        Food food = user.getFood();
-        System.out.println("food.getName() = " + food.getName());
-        System.out.println("food.getPrice() = " + food.getPrice());
+        //Food food = user.getFood();
+        //System.out.println("food.getName() = " + food.getName());
+        //System.out.println("food.getPrice() = " + food.getPrice());
     }
 
 }
