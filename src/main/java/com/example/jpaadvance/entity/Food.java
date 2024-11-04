@@ -1,15 +1,15 @@
 package com.example.jpaadvance.entity;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "food")
-@ToString
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Food {
     private String name;
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany
+    @JoinColumn(name = "food_id") // users 테이블에 food_id 컬럼
+    private List<User> userList = new ArrayList<>();
 }
